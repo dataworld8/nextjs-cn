@@ -1,0 +1,226 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 72.22% 50.59%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 5% 64.9%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 85.7% 97.3%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    /* font-feature-settings: "rlig" 1, "calt" 1; */
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+  }
+}
+
+@layer utilities {
+  .step {
+    counter-increment: step;
+  }
+
+  .step:before {
+    @apply absolute w-9 h-9 bg-muted rounded-full font-mono font-medium text-center text-base inline-flex items-center justify-center -indent-px border-4 border-background;
+    @apply ml-[-50px] mt-[-4px];
+    content: counter(step);
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    @apply px-4;
+  }
+}
+
+/* 首页背景 */
+.wave {
+  background: url("/svgs/wave.svg") repeat-x;
+  width: 6400px;
+  height: 198px;
+  position: absolute;
+  top: -198px;
+  animation: wave 7s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
+}
+
+.wave:nth-child(2) {
+  top: -175px;
+  animation: wave 7s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite, swell 7s ease infinite;
+  animation-delay: -0.2s
+}
+
+@keyframes wave {
+  0% {
+      margin-left: 0
+  }
+
+  100% {
+      margin-left: -1600px
+  }
+}
+
+@keyframes swell {
+  0%, 100% {
+      transform: translate(0, -25px)
+  }
+
+  50% {
+      transform: translate(0, 5px)
+  }
+}
+
+
+.icon-box {
+  display: flex;
+  flex-direction: row
+}
+
+.icon-box a {
+  color: #fff;
+  margin: 0 10px;
+  text-decoration: none;
+  display: block;
+  position: relative
+}
+
+.icon-box a .layer {
+  width: 60px;
+  height: 60px;
+  transition: 0.3s
+}
+
+.icon-box a .layer i {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--c);
+  border-radius: 6px;
+  transition: 0.3s
+}
+
+.icon-box a .layer svg {
+  font-size: 35px;
+  text-align: center;
+  line-height: 60px;
+  color: var(--c)
+}
+
+.icon-box a .text {
+  position: absolute;
+  bottom: 0;
+  opacity: 0;
+  width: 100%;
+  text-align: center;
+  color: var(--c);
+  transition: 0.3s
+}
+
+.icon-box a:hover .text {
+  bottom: -35px;
+  opacity: 1
+}
+
+.icon-box a:hover .layer {
+  transform: rotate(-35deg) skew(20deg);
+}
+
+.icon-box a:hover .layer i:nth-child(1) {
+  opacity: 0.2;
+  transform: translate(0, 0);
+}
+
+.icon-box a:hover .layer i:nth-child(2) {
+  opacity: 0.4;
+  transform: translate(5px, -5px);
+}
+
+.icon-box a:hover .layer i:nth-child(3) {
+  opacity: 0.6;
+  transform: translate(10px, -10px);
+}
+
+.icon-box a:hover .layer i:nth-child(4) {
+  opacity: 0.8;
+  transform: translate(15px, -15px);
+}
+
+.icon-box a:hover .layer i:nth-child(5) {
+  opacity: 1;
+  transform: translate(20px, -20px);
+}
+
+.icon-box a:hover .layer i {
+  box-shadow: -1px 1px 3px var(--c)
+}
+
+.icon-box a:nth-child(1) .layer i, .icon-box a:nth-child(1) .text {
+  --c: #12b7f5
+}
+
+.icon-box a:nth-child(2) .layer i, .icon-box a:nth-child(2) .text {
+  --c: #2aae67
+}
+
+.icon-box a:nth-child(3) .layer i, .icon-box a:nth-child(3) .text {
+  --c: #e79115
+}
+
+.icon-box a:nth-child(4) .layer i, .icon-box a:nth-child(4) .text {
+  --c: #2075fd
+}
+
+.icon-box a:nth-child(5) .layer i, .icon-box a:nth-child(5) .text {
+  --c: #2d8dc5
+}
+
+.icon-box a:nth-child(6) .layer i, .icon-box a:nth-child(6) .text {
+  --c: #2075fd
+}
